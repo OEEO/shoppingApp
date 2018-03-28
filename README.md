@@ -1,6 +1,20 @@
 # shoppingapp
 
-> A Vue.js project
+这是一个手机端生鲜app
+
+
+
+### 技术栈
+
+Webpack + Vue2.x + vue-cli +  vue-router + vuex + axios + element-ui 
+
+
+
+### 手机微信，或浏览器扫码查看demo
+
+![](./static/url.png)
+
+
 
 ## Build Setup
 
@@ -19,3 +33,4 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
