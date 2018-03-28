@@ -61,6 +61,7 @@ export default {
     border-top: 1px solid #eee;
     font-size: 0;
     background-color: #fff;
+    z-index: 999;
   }
   .nav-item{
     display: inline-block;
