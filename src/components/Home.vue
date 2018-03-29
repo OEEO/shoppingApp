@@ -53,7 +53,7 @@ export default {
     HomeHeader: HomeHeader,
   },
   mounted () {
-    this.axios.get('http://localhost:8080/static/data/goods.json').then(res => {
+    this.axios.get('https://github.com/OEEO/shoppingApp/tree/master/dist/static/data/goods.json').then(res => {
       this.goods = [...res.data];
     });
   }
