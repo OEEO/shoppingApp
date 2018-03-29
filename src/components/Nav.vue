@@ -4,7 +4,9 @@
       <div class="homeImg" :class="homeImgOn" @click="changeNavImg"></div>
     </router-link>
     <router-link to="/Cart" class="nav-item">
-      <div class="cartImg" :class="cartImgOn" @click="changeNavImg"></div>
+      <div class="cartImg" :class="cartImgOn" @click="changeNavImg">
+        <span class="cart-counter" v-show="cartCounter > 0">{{ cartCounter }}</span>
+      </div>
     </router-link>
     <router-link to="/Profile" class="nav-item">
       <div class="profileImg" :class="profileImgOn" @click="changeNavImg"></div>
@@ -48,6 +50,11 @@ export default {
         this.profileImgOn = 'profileImgOn';
       }
     },
+  },
+  computed: {
+    cartCounter () {
+      return this.$store.state.cartCounter;
+    }
   }
 }
 </script>
@@ -102,6 +109,18 @@ export default {
   }
   .profileImgOn{
     background-image: url('../assets/icon/profile-on.png');
+  }
+
+  .cart-counter{
+    position: absolute;
+    width: 25px;
+    height: 20px;
+    top: 5px;
+    line-height: 20px;
+    border-radius: 40%;
+    background-color: #ff65af;
+    color: #fff;
+    font-size: 10px;
   }
 
 </style>

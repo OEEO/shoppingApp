@@ -12,10 +12,12 @@
       <ul class="goods">
         <li v-for="item in goods" class="one-com">
           <one-commodity
-            :imgUrl="item.url"
+            :itemId="item.id"
+            :imgUrl="item.img"
             :title="item.title"
             :content="item.content"
             :price="item.price"
+            :count="0"
            ></one-commodity>
         </li>
       </ul>
@@ -34,29 +36,26 @@ export default {
   name: 'home',
   data () {
     return {
-      goods:[
-        {id:1, url:require('../assets/imgs/1.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:2, url:require('../assets/imgs/2.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:3, url:require('../assets/imgs/3.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:4, url:require('../assets/imgs/4.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:5, url:require('../assets/imgs/5.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:6, url:require('../assets/imgs/6.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:7, url:require('../assets/imgs/7.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:8, url:require('../assets/imgs/8.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:1, url:require('../assets/imgs/1.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:2, url:require('../assets/imgs/2.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:3, url:require('../assets/imgs/3.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:4, url:require('../assets/imgs/4.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:5, url:require('../assets/imgs/5.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:6, url:require('../assets/imgs/6.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:7, url:require('../assets/imgs/7.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-        {id:8, url:require('../assets/imgs/8.jpg'),title:'这是一只大苹果',content:'又香又甜又好吃',price:18 },
-      ],
+      goods:[],
+      // goods:[
+      //     {'id':1, 'img': require('../assets/imgs/goods/水果.png'), 'title': '这是水果标题', 'content': '这是水果介绍', 'price': 18 },
+      //     {'id':2, 'img': require('../assets/imgs/goods/蔬菜.png'), 'title': '这是蔬菜标题', 'content': '这是蔬菜介绍', 'price': 20 },
+      //     {'id':3, 'img': require('../assets/imgs/goods/肉蛋.png'), 'title': '这是肉蛋标题', 'content': '这是肉蛋介绍', 'price': 10 },
+      //     {'id':4, 'img': require('../assets/imgs/goods/速冻.png'), 'title': '这是速冻标题', 'content': '这是速冻介绍', 'price': 50 },
+      //     {'id':5, 'img': require('../assets/imgs/goods/酒饮.png'), 'title': '这是酒饮标题', 'content': '这是酒饮介绍', 'price': 100 },
+      //     {'id':6, 'img': require('../assets/imgs/goods/乳品.png'), 'title': '这是乳品标题', 'content': '这是乳品介绍', 'price': 55 },
+      //     {'id':7, 'img': require('../assets/imgs/goods/零食.png'), 'title': '这是零食标题', 'content': '这是零食介绍', 'price': 5 }
+      // ]
     }
   },
   components: {
     OneCommodity: OneCommodity,
     HomeHeader: HomeHeader,
+  },
+  mounted () {
+    this.axios.get('http://localhost:8080/static/data/goods.json').then(res => {
+      this.goods = [...res.data];
+    });
   }
 }
 </script>

@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue'
 import {
   Button,
   Input,
@@ -8,12 +8,17 @@ import {
   Submenu,
   MenuItem,
   MenuItemGroup,
-  Carousel,
-  CarouselItem,
-} from 'element-ui';
+  Carousel,//幻灯片
+  CarouselItem,//幻灯片
+  Badge,//购物车上方显示数量
+} from 'element-ui'
+
+import InputNumber from '../components/public/InputNumber'
+
 
 Vue.use(Button)
 Vue.use(Input)
+Vue.use(InputNumber)
 Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Menu)
@@ -22,3 +27,4 @@ Vue.use(MenuItem)
 Vue.use(MenuItemGroup)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+Vue.use(Badge)
