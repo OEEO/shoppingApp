@@ -16,6 +16,10 @@ Webpack + Vue2.x + vue-cli +  vue-router + vuex + axios + element-ui
 
 
 
+电脑端（效果不佳）
+
+https://oeeo.github.io/shoppingApp/dist/index.html
+
 ## Build Setup
 
 ``` bash
