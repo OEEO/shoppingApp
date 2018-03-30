@@ -10,21 +10,23 @@
             </el-carousel-item>
           </el-carousel>
         </div> -->
-      <ul class="goods">
-        <li v-for="item in goods" class="one-com" v-show="isCurrent(item.kind)">
-          <one-commodity
-            :itemId="item.id"
-            :imgUrl="item.img"
-            :title="item.title"
-            :content="item.content"
-            :price="item.price"
-            :count="0"
-           ></one-commodity>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <p class="no-more-goods">没有更多商品啦，敬请期待!!!</p>
+      <transition-group enter-active-class="slideInRight">
+        <ul class="goods animated" :key="animatedCurrentKey">
+          <li v-for="item in goods" class="one-com" v-show="isCurrent(item.kind)">
+            <one-commodity
+              :itemId="item.id"
+              :imgUrl="item.img"
+              :title="item.title"
+              :content="item.content"
+              :price="item.price"
+              :count="0"
+             ></one-commodity>
+          </li>
+        </ul>
+        <div :key="animatedCurrentKey">
+          <p class="no-more-goods">没有更多商品啦，敬请期待!!!</p>
+        </div>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -38,6 +40,7 @@ export default {
   data () {
     return {
       goods:[],
+      animatedCurrentKey:0,
     }
   },
   computed: {
@@ -47,6 +50,7 @@ export default {
     //分类按钮点击时
     isCurrent (itemKind) {
       let currentKind = this.$store.state.GoodsCurrentSelKind;
+      this.animatedCurrentKey = currentKind;
       if (currentKind === 0) {
         //0表示全部商品
         return true;
@@ -80,11 +84,12 @@ export default {
 <style scoped>
 .home{
   width: 100%;
-  margin-bottom: 70px;
-  margin-top: 110px;
+  padding-bottom: 70px;
+  padding-top: 110px;
 }
 .home-main{
   width: 100%;
+  overflow-x: hidden;
 }
 .goods{
   width: 100%;

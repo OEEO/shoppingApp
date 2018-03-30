@@ -9,10 +9,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 import './ui/element-ui.js'
+
 import './assets/css/base.css'
-
-
-
+import './assets/css/vue2-animate.css'
 
 Vue.use(VueAxios, axios)
 

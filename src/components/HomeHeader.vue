@@ -51,6 +51,10 @@ export default {
   methods: {
     changeGoodsType () {
       this.$store.state.GoodsCurrentSelKind = this.kindToType.get(this.goodsType);
+      this.toTop();
+    },
+    toTop () {
+
     }
   }
 }
