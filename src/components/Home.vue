@@ -48,9 +48,10 @@ export default {
     HomeHeader: HomeHeader,
   },
   //本地测试：http://localhost:8080/static/data/goods.json
-  //gitHub：/shoopingApp/static/data/github-goods.json
+  //gitHub：/shoppingApp/static/data/github-goods.json
+  //阿里云：
   mounted () {
-    this.axios.get('/shoopingApp/static/data/github-goods.json').then(res => {
+    this.axios.get('/shoppingApp/static/data/github-goods.json').then(res => {
       this.goods = [...res.data];
     });
   }
