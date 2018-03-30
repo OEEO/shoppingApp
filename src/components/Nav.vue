@@ -25,15 +25,6 @@ export default {
     }
   },
   methods: {
-    getText () {
-      this.axios.get('http://localhost:8080/static/data/goods.txt')
-        .then(res => {
-          alert(res.data)
-        })
-        .catch(error => {
-          console.log(error.status)
-        })
-    },
     changeNavImg (ev) {
       let claName = ev.target.className;
       if (claName.indexOf('home') !== -1) {
@@ -55,6 +46,11 @@ export default {
     cartCounter () {
       return this.$store.state.cartCounter;
     }
+  },
+  mounted () {
+    require('../assets/icon/home-on.png');
+    require('../assets/icon/cart-on.png');
+    require('../assets/icon/profile-on.png');
   }
 }
 </script>
@@ -68,14 +64,13 @@ export default {
     border-top: 1px solid #eee;
     font-size: 0;
     background-color: #fff;
+    height: 60px;
     z-index: 999;
   }
   .nav-item{
     display: inline-block;
     width: 33.33%;
     height: 60px;
-    color: #444;
-    text-decoration: none;
   }
   .nav-item>div{
     height: 100%;
@@ -85,7 +80,7 @@ export default {
     background-image: url('../assets/icon/home.png');
     background-repeat: no-repeat;
     background-position: center 50%;
-    background-size: 50px;
+    background-size: 45px;
   }
   .homeImgOn{
     background-image: url('../assets/icon/home-on.png');
@@ -95,7 +90,7 @@ export default {
     background-image: url('../assets/icon/cart.png');
     background-repeat: no-repeat;
     background-position: center 50%;
-    background-size: 40px;
+    background-size: 45px;
   }
   .cartImgOn{
     background-image: url('../assets/icon/cart-on.png');
@@ -105,7 +100,7 @@ export default {
     background-image: url('../assets/icon/profile.png');
     background-repeat: no-repeat;
     background-position: center 50%;
-    background-size: 40px;
+    background-size: 45px;
   }
   .profileImgOn{
     background-image: url('../assets/icon/profile-on.png');

@@ -4,16 +4,18 @@
       <img :src="imgUrl">
     </div>
     <div class="right">
-      <h3>{{ title }}</h3>
-      <p>{{ content }}</p>
-      <div class="price-cart-wrap">
-        <span class="price"> ￥
-          <span class="price-number">{{ price }}</span>
-        </span>
-        <span class="cart-btn">
-          <el-button icon="el-icon-goods" type="danger" @click.native="addGoodsToCart" v-show="counter === 0" circle> </el-button>
-          <my-input-number :count="counter" v-show="counter > 0" @changeNumberEvent="getCounter"></my-input-number>
-        </span>
+      <div class="text">
+        <h3 class="title">{{ title }}</h3>
+        <p class="content">{{ content }}</p>
+        <div>
+          <span class="price"> ￥
+            <span class="price-number">{{ price }}</span>
+          </span>
+        </div>
+      </div>
+      <div class="cart-btn">
+        <el-button icon="el-icon-goods" type="danger" @click.native="addGoodsToCart" v-show="counter === 0" circle> </el-button>
+        <my-input-number :count="counter" v-show="counter > 0" @changeNumberEvent="getCounter"></my-input-number>
       </div>
     </div>
   </div>
@@ -85,14 +87,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  $GobalFontSize:14px;
   .one-commodity{
     height: 130px;
     width: 100%;
     font-size: 0;
     border-bottom: 1px solid #e4e7ed;
+    background-color: #fff;
   }
   .one-commodity>div{
-    font-size: 16px;
+    font-size: $GobalFontSize;
     display: inline-block;
     vertical-align: middle;
   }
@@ -109,34 +113,35 @@ export default {
     position: relative;
     height: 100%;
     width: 60%;
-    line-height: 1em;
     text-align: left;
     padding-left: 10px;
-    .price-cart-wrap{
+    .text{
       position: absolute;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      .price {
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        .price-number{
-          color: #ff65af;
-          font-size: 18px;
-          font-weight: 600;
-        }
+      line-height: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .title{
+
+    }
+    .price {
+
+      .price-number{
+        color: #ff65af;
+        font-size: 18px;
+        font-weight: 600;
       }
-      .cart-btn{
-        position: absolute;
-        bottom: 5px;
-        right: 10px;
-      }
+    }
+    .cart-btn{
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
       .el-button--danger{
         background-color: #ff65af;
         border-color: #ff65af;
       }
     }
+
   }
 
   @media screen and (min-width: 600px) {

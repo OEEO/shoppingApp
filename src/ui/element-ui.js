@@ -11,6 +11,9 @@ import {
   Carousel,//幻灯片
   CarouselItem,//幻灯片
   Badge,//购物车上方显示数量
+  Select,
+  Option,
+  Dialog,
 } from 'element-ui'
 
 import InputNumber from '../components/public/InputNumber'
@@ -28,3 +31,6 @@ Vue.use(MenuItemGroup)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
 Vue.use(Badge)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Dialog)
