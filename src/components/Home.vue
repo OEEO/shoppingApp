@@ -48,12 +48,15 @@ export default {
       // ]
     }
   },
+  computed: {
+
+  },
   components: {
     OneCommodity: OneCommodity,
     HomeHeader: HomeHeader,
   },
   mounted () {
-    this.axios.get('/shoppingApp/static/data/goods.json').then(res => {
+    this.axios.get('http://localhost:8080/static/data/goods.json').then(res => {
       this.goods = [...res.data];
     });
   }

@@ -11,8 +11,8 @@
           <span class="price-number">{{ price }}</span>
         </span>
         <span class="cart-btn">
-          <el-button icon="el-icon-goods" type="danger" @click.native="addGoodsToCart" v-show="count === 0" circle> </el-button>
-          <my-input-number :count="count" v-show="count > 0" @changeNumberEvent="getCounter"></my-input-number>
+          <el-button icon="el-icon-goods" type="danger" @click.native="addGoodsToCart" v-show="counter === 0" circle> </el-button>
+          <my-input-number :count="counter" v-show="counter > 0" @changeNumberEvent="getCounter"></my-input-number>
         </span>
       </div>
     </div>
@@ -32,12 +32,22 @@ export default {
         title: this.title,
         content: this.content,
         price: this.price,
-        count: 0,
+        count: this.count,
       }
     }
   },
   computed: {
-
+    counter () {
+      let that = this;
+      let cartGoods = this.$store.state.cartGoods;
+      let result = 0;
+      cartGoods.some(good => {
+        if (good.id === that.itemId) {
+          result = good.count;
+        }
+      });
+      return result;
+    }
   },
   methods: {
     addGoodsToCart (ev) {
@@ -52,6 +62,11 @@ export default {
       this.oneCommodity.count = num;
       let cartGoods = this.$store.state.cartGoods;
       let that = this;
+      cartGoods.forEach(good => {
+        if (good.id === that.itemId) {
+          good.count = num;
+        }
+      })
       if (num === 0) {
         this.$store.state.cartGoods = cartGoods.filter(good => {
           return good.id !== that.itemId;

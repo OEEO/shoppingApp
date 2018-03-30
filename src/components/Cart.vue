@@ -13,6 +13,9 @@
            ></one-commodity>
         </li>
       </ul>
+      <div class="amount">商品总价：{{ amount }}</div>
+      <div class="red-packet">红包：{{ redPacket }}</div>
+      <div class=""></div>
   </div>
 </template>
 
@@ -23,11 +26,20 @@ export default {
   name: 'cart',
   data () {
     return {
+      redPacket:18
     }
   },
   computed: {
     cartGoods () {
       return this.$store.state.cartGoods;
+    },
+    amount () {
+      let cartGoods = this.$store.state.cartGoods;
+      let result = 0;
+      cartGoods.forEach(good =>{
+        result += good.price * good.count;
+      })
+      return result;
     }
   },
   components: {
