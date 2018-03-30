@@ -1,5 +1,5 @@
 <template>
-  <div class="input-number">
+  <div class="input-number" @click="stopPro">
     <i class="el-icon-remove-outline" @click="minus"></i>
     <span class="inputText">{{ number }}</span>
     <i class="el-icon-circle-plus" @click="plus"></i>
@@ -34,6 +34,9 @@ export default {
     },
     changeNumber () {
       this.$emit('changeNumberEvent',this.number);
+    },
+    stopPro (ev) {
+      ev.stopPropagation();
     }
   },
 }
@@ -42,7 +45,7 @@ export default {
 <style lang="scss" scoped>
   .input-number{
     display: inline-block;
-
+    user-select: none;
     .inputText{
       display: inline-block;
       width: 20px;

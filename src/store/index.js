@@ -13,6 +13,7 @@ export default new Vuex.Store({
     point: 0, //积分
     cartGoods: [], //添加到购物车中的商品
     cartCounter: 0,//购物车物品总数
+    GoodsCurrentSelKind: 0,//表示全部商品
   },
   mutations: {
 

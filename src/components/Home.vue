@@ -11,7 +11,7 @@
           </el-carousel>
         </div> -->
       <ul class="goods">
-        <li v-for="item in goods" class="one-com">
+        <li v-for="item in goods" class="one-com" v-show="isCurrent(item.kind)">
           <one-commodity
             :itemId="item.id"
             :imgUrl="item.img"
@@ -43,6 +43,18 @@ export default {
   computed: {
 
   },
+  methods: {
+    //分类按钮点击时
+    isCurrent (itemKind) {
+      let currentKind = this.$store.state.GoodsCurrentSelKind;
+      if (currentKind === 0) {
+        //0表示全部商品
+        return true;
+      } else {
+        return itemKind === currentKind;
+      }
+    }
+  },
   components: {
     OneCommodity: OneCommodity,
     HomeHeader: HomeHeader,
@@ -51,9 +63,16 @@ export default {
   //gitHub：/shoppingApp/static/data/github-goods.json
   //阿里云：
   mounted () {
-    this.axios.get('/shoppingApp/static/data/github-goods.json').then(res => {
+    this.axios.get('/shoppingApp/static/data/github-goods.json')
+    .then(res => {
       this.goods = [...res.data];
-    });
+    })
+    .catch(() =>{
+      this.axios.get('http://localhost:8080/static/data/goods.json')
+      .then(res => {
+        this.goods = [...res.data];
+      })
+    })
   }
 }
 </script>
