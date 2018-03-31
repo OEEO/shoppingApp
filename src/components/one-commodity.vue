@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $GobalFontSize:14px;
+  @import "../assets/css/variable.scss";
   .one-commodity{
     height: 130px;
     width: 100%;

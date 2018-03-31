@@ -7,14 +7,14 @@
         <div class="wrap">
           <ul class="goods-wrap">
             <li v-for="item in cartGoods" class="cartGoodsItem">
-              <one-commodity
+              <cart-one-item
                 :itemId="item.id"
                 :imgUrl="item.img"
                 :title="item.title"
                 :content="item.content"
                 :price="item.price"
                 :count="item.count"
-               ></one-commodity>
+               ></cart-one-item>
             </li>
           </ul>
           <div class="price-wrap">
@@ -67,10 +67,13 @@
 </template>
 
 <script>
-import OneCommodity from './one-commodity.vue'
+import CartOneItem from './CartOneItem.vue'
 
 export default {
   name: 'cart',
+  components: {
+    'cart-one-item': CartOneItem
+  },
   data () {
     return {
       redPackets: [
@@ -128,9 +131,6 @@ export default {
       }
     }
   },
-  components: {
-    'one-commodity': OneCommodity
-  }
 }
 </script>
 

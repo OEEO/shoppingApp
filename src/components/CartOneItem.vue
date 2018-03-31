@@ -1,5 +1,5 @@
 <template>
-  <div class="one-commodity" @click="goToDetailsPage">
+  <div class="cart-one-item" @click="goToDetailsPage">
     <div class="left">
       <img :src="imgUrl">
     </div>
@@ -18,6 +18,18 @@
         <my-input-number :count="counter" v-show="counter > 0" @changeNumberEvent="getOperator"></my-input-number>
       </div>
     </div>
+    <div class="dialog-box" @click.stop="">
+      <el-dialog
+        :visible.sync="dialogVisible"
+        width="80%"
+        :show-close="false">
+        <span>你确定删除该商品么？</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="danger" @click="confirmDelete">删除</el-button>
+        </span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -35,7 +47,8 @@ export default {
         content: this.content,
         price: this.price,
         count: this.count,
-      }
+      },
+      dialogVisible: false
     }
   },
   computed: {
@@ -52,25 +65,47 @@ export default {
     }
   },
   methods: {
-    addGoodsToCart (ev) {
+    addGoodsToCart () {
       this.count = 1;
       this.oneCommodity.count++;
       this.$store.state.cartGoods.push(this.oneCommodity);
       this.$store.state.cartCounter++;
     },
     getOperator (op) {
-      let cartGoods = this.$store.state.cartGoods;
+      let good = null;
+      this.$store.state.cartGoods.some(obj => {
+        if (obj.id === this.itemId) {
+          good = obj;
+        }
+      })
       if (op === 'plus') {
+        this.$store.state.cartCounter++;
         good.count++;
       } else {
-        good.count--;
-        console.log(good.count);
-        if (good.count === 0) {
-          this.$store.state.cartGoods = cartGoods.filter(obj => {
-            return obj.id !== good.id;
-          })
+        // 商品数量为1时，进行减少操作，弹出对话框
+        if (good.count === 1) {
+          this.dialogVisible = true;
+          return;
+          } else {
+            this.$store.state.cartCounter--;
+            good.count--;
+          }
         }
-      }
+    },
+    confirmDelete () {
+      this.dialogVisible = false;
+      let good = null;
+      this.$store.state.cartGoods.some(obj => {
+        if (obj.id === this.itemId) {
+          good = obj;
+        }
+      })
+      let cartGoods = this.$store.state.cartGoods;
+      this.$store.state.cartCounter--;
+      good.count--;
+      this.$store.state.cartGoods = cartGoods.filter(obj => {
+        return obj.id !== good.id;
+      })
     },
     goToDetailsPage () {
       this.$router.push({
@@ -83,19 +118,19 @@ export default {
     MyInputNumber: InputNumber
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
+
   $GobalFontSize:14px;
-  .one-commodity{
+  .cart-one-item{
     height: 130px;
     width: 100%;
     font-size: 0;
     border-bottom: 1px solid #e4e7ed;
     background-color: #fff;
   }
-  .one-commodity>div{
+  .cart-one-item>div{
     font-size: $GobalFontSize;
     display: inline-block;
     vertical-align: middle;
@@ -159,4 +194,6 @@ export default {
       height: 400px;
     }
   }
+
 </style>
+
