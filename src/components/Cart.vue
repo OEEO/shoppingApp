@@ -205,6 +205,7 @@ export default {
   }
   .el-button--danger{
     background-color: #ff65af;
-    border-color: #ff65af;
+    border: none;
+    border-radius: 0;
   }
 </style>

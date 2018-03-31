@@ -1,19 +1,30 @@
 <template>
   <div class="details-page">
     <header class="dp-header">
-      <router-link to="/">
-        <el-button type="primary" icon="el-icon-back"></el-button>
-      </router-link>
-      <span>商品详情</span>
+      <span class="dp-header-toRoot">
+        <router-link to="/">
+          <i class="el-icon-arrow-left" ></i>
+        </router-link>
+      </span>
+      <h3>商品详情</h3>
     </header>
     <main class="dp-main">
-      <div>
+      <div class="goods-img-wrap">
         <img :src="goods.img">
       </div>
-      <h4>{{ goods.title }}</h4>
-      <p>{{ goods.content }}</p>
-      <div>
-        <span class="goods-price">{{ goods.price }}</span>
+      <div class="goods-card">
+        <h3>{{ goods.title }}</h3>
+        <p>{{ goods.content }}</p>
+        <div>
+          <span>￥
+            <span class="goods-price">{{ goods.price }}</span>
+          </span>
+        </div>
+      </div>
+      <div class="goods-intruction">
+        <p v-for="item in 30">
+          这是{{ goods.title }} 的商品详细介绍
+        </p>
       </div>
     </main>
     <footer class="dp-footer">
@@ -23,7 +34,7 @@
           <el-button icon="el-icon-goods"></el-button>
         </router-link>
       </span>
-      <el-button @click="addGoodsToCart">加入购物车</el-button>
+      <el-button @click="addGoodsToCart" type="danger">加入购物车</el-button>
     </footer>
   </div>
 </template>
@@ -65,6 +76,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  $mainRed: #ff65af;
+  $dpFooterHeight:50px;
+  $dpHeaderHeight:50px;
   .details-page{
     width: 100%;
     height: 100%;
@@ -72,23 +86,75 @@ export default {
     z-index: 1001;
     background-color: #fff;
   }
-
+  .dp-header{
+    position: relative;
+    text-align: center;
+    height: $dpHeaderHeight;
+    border-bottom: 1px solid #eee;
+    line-height: $dpHeaderHeight;
+    .dp-header-toRoot{
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 5px;
+      .el-icon-arrow-left{
+        font-size: 20px;
+        font-weight: 800;
+      }
+    }
+  }
+  .dp-main{
+    background-color: #fff;
+    padding-bottom: $dpFooterHeight + 10px;
+    .goods-card{
+      border: 1px solid #eee;
+      margin: 0 10px;
+      line-height: 40px;
+      .goods-price{
+        color: $mainRed;
+      }
+    }
+    .goods-intruction{
+      margin-top: 10px;
+      border: 1px solid #eee;
+      padding: 10px;
+      line-height: 20px;
+    }
+  }
   .dp-footer{
     width: 100%;
+    height: $dpFooterHeight;
+    line-height: $dpFooterHeight;
     position: fixed;
     bottom: 0;
     left: 0;
+    border-top: 1px solid #eee;
     background-color: #fff;
-  }
-  .cart-counter{
-    position: absolute;
-    width: 25px;
-    height: 20px;
-    top: 5px;
-    line-height: 20px;
-    border-radius: 40%;
-    background-color: #ff65af;
-    color: #fff;
-    font-size: 10px;
+    font-size: 0;
+    .el-button--default,
+    .el-button--danger{
+      border: none;
+      border-radius: 0;
+      height: $dpFooterHeight;
+    }
+    .el-button--default{
+      width: 20%;
+    }
+    .el-button--danger{
+      width: 80%;
+      background-color: $mainRed;
+    }
+    .cart-counter{
+      position: absolute;
+      width: 25px;
+      height: 20px;
+      top: 5px;
+      left: 40px;
+      line-height: 20px;
+      border-radius: 40%;
+      background-color: #ff65af;
+      color: #fff;
+      font-size: 10px;
+    }
   }
 </style>
