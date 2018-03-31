@@ -45,14 +45,19 @@ export default {
   },
   methods: {
     addGoodsToCart () {
-      this.goods.count++;
       this.$store.state.cartCounter++;
       let isInCart = this.$store.state.cartGoods.some(obj => {
         return obj.id === this.goods.id;
       });
-      console.log(this.goods);
       if (!isInCart) {
+        this.goods.count++;
         this.$store.state.cartGoods.push(this.goods);
+      } else {
+        this.$store.state.cartGoods.some(obj => {
+          if (obj.id === this.goods.id) {
+            obj.count++;
+          }
+        })
       }
     }
   }

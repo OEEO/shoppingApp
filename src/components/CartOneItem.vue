@@ -52,26 +52,19 @@ export default {
     }
   },
   methods: {
-    addGoodsToCart () {
+    addGoodsToCart (ev) {
       this.count = 1;
       this.oneCommodity.count++;
       this.$store.state.cartGoods.push(this.oneCommodity);
       this.$store.state.cartCounter++;
     },
     getOperator (op) {
-      let good = null;
-      this.$store.state.cartGoods.some(obj => {
-        if (obj.id === this.itemId) {
-          good = obj;
-        }
-      })
       let cartGoods = this.$store.state.cartGoods;
       if (op === 'plus') {
-        this.$store.state.cartCounter++;
         good.count++;
       } else {
-        this.$store.state.cartCounter--;
         good.count--;
+        console.log(good.count);
         if (good.count === 0) {
           this.$store.state.cartGoods = cartGoods.filter(obj => {
             return obj.id !== good.id;

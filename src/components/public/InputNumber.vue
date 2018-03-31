@@ -1,5 +1,5 @@
 <template>
-  <div class="input-number" @click="stopPro">
+  <div class="input-number" @click.stop="">
     <i class="el-icon-remove-outline" @click="minus"></i>
     <span class="inputText">{{ number }}</span>
     <i class="el-icon-circle-plus" @click="plus"></i>
@@ -12,6 +12,7 @@ export default {
   props: ['count'],
   data () {
     return {
+      operator: ''
     }
   },
   computed: {
@@ -20,23 +21,16 @@ export default {
     }
   },
   methods: {
-    minus (ev) {
-      ev.stopPropagation();
-      this.count--;
-      this.$store.state.cartCounter--;
+    minus () {
+      this.operator = 'minus',
       this.changeNumber();
     },
-    plus (ev) {
-      ev.stopPropagation();
-      this.count++;
-      this.$store.state.cartCounter++;
+    plus () {
+      this.operator = 'plus'
       this.changeNumber();
     },
     changeNumber () {
-      this.$emit('changeNumberEvent',this.number);
-    },
-    stopPro (ev) {
-      ev.stopPropagation();
+      this.$emit('changeNumberEvent', this.operator);
     }
   },
 }
@@ -50,7 +44,6 @@ export default {
       display: inline-block;
       width: 20px;
       text-align: center;
-
     }
   }
 </style>
