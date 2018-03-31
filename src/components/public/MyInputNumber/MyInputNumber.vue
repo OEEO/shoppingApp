@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
   .el-icon-remove-outline,
   .el-icon-circle-plus{
-    font-size: 20px;
+    font-size: 18px;
   }
   .el-icon-remove-outline{
     color: #ff65af;
@@ -47,12 +47,12 @@ export default {
   .el-icon-circle-plus{
     color: #ff65af;
   }
-  .input-number{
+  .my-input-number{
     display: inline-block;
     user-select: none;
     .inputText{
       display: inline-block;
-      width: 25px;
+      width: 20px;
       text-align: center;
     }
   }
