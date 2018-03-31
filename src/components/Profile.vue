@@ -9,7 +9,7 @@
     </div>
     <div class="main" v-else>
       <header class="profile-header">
-        当前用户：{{ username }}
+        <h3>当前用户：{{ username }}</h3>
       </header>
       <main class="profile-body"></main>
       <footer class="profile-footer"></footer>
@@ -24,7 +24,7 @@ export default {
     return {
       isLogin: false,
       username: 'abcde',
-      password: '123456',
+      password: '123456'
     }
   }
 }
@@ -43,6 +43,14 @@ export default {
     .el-input{
       width: 80%;
       margin-bottom: 10px;
+    }
+  }
+  .main{
+    width: 100%;
+    height: 100%;
+    .profile-header{
+      height: 50px;
+      line-height: 50px;
     }
   }
 </style>

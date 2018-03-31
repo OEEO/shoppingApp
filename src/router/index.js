@@ -3,10 +3,12 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Cart from '@/components/Cart'
 import Profile from '@/components/Profile'
+import DetailsPage from '@/components/DetailsPage'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -23,6 +25,10 @@ export default new Router({
     {
       path: '/Profile',
       component: Profile
+    },
+    {
+      path: '/DetailsPage',
+      component: DetailsPage
     }
   ]
 })

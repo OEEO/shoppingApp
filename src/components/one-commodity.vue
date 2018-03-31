@@ -76,7 +76,10 @@ export default {
       }
     },
     goToDetailsPage () {
-      window.alert('商品详情页');
+      this.$router.push({
+        path: '/DetailsPage',
+        query: this.oneCommodity
+      })
     }
   },
   components: {

@@ -1,5 +1,6 @@
 <template>
   <nav class="app-nav">
+    <div>{{ currentPath }}</div>
     <router-link to="/Home" class="nav-item">
       <div class="homeImg" :class="homeImgOn" @click="changeNavImg"></div>
     </router-link>
@@ -19,38 +20,68 @@ export default {
   name: 'home',
   data () {
     return {
-      homeImgOn: 'homeImgOn',
+      homeImgOn: '',
       cartImgOn: '',
       profileImgOn: ''
     }
   },
   methods: {
+    //点击更新菜单背景
     changeNavImg (ev) {
       let claName = ev.target.className;
-      if (claName.indexOf('home') !== -1) {
+      if (claName.includes('home')) {
         this.homeImgOn = 'homeImgOn';
         this.cartImgOn = '';
         this.profileImgOn = '';
-      } else if(claName.indexOf('cart') !== -1){
+      } else if(claName.includes('cart')){
         this.homeImgOn = '';
         this.cartImgOn = 'cartImgOn';
         this.profileImgOn = '';
-      } else {
+      } else if(claName.includes('profile')) {
         this.homeImgOn = '';
         this.cartImgOn = '';
         this.profileImgOn = 'profileImgOn';
+      } else {
+        this.homeImgOn = '';
+        this.cartImgOn = '';
+        this.profileImgOn = '';
       }
     },
+    //直接跳转时，更新背景
+    autoChangeCurrentImg() {
+      let currentPath = this.currentPath;
+      if (currentPath.includes('Home')) {
+        this.homeImgOn = 'homeImgOn';
+        this.cartImgOn = '';
+        this.profileImgOn = '';
+      } else if(currentPath.includes('Cart')){
+        this.homeImgOn = '';
+        this.cartImgOn = 'cartImgOn';
+        this.profileImgOn = '';
+      } else if(currentPath.includes('Profile')) {
+        this.homeImgOn = '';
+        this.cartImgOn = '';
+        this.profileImgOn = 'profileImgOn';
+      } else {
+        this.homeImgOn = '';
+        this.cartImgOn = '';
+        this.profileImgOn = '';
+      }
+    }
   },
   computed: {
     cartCounter () {
       return this.$store.state.cartCounter;
-    }
+    },
+    currentPath () {
+      return this.$route.path;
+    },
   },
   mounted () {
-    require('../assets/icon/home-on.png');
-    require('../assets/icon/cart-on.png');
-    require('../assets/icon/profile-on.png');
+    this.autoChangeCurrentImg();
+  },
+  updated () {
+    this.autoChangeCurrentImg();
   }
 }
 </script>

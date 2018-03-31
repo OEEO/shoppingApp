@@ -163,8 +163,8 @@ export default {
     z-index: 999;
   }
   .cart-body{
-    margin-top: $cartHeaderHeight;
-    margin-bottom: $NavHeight + $cartFooterHeight;
+    padding-top: $cartHeaderHeight;
+    padding-bottom: $NavHeight + $cartFooterHeight;
     background-color: #eee;
     .wrap{
       padding-top: 10px;

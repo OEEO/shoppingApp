@@ -33,28 +33,24 @@ export default {
   name: 'home-header',
   data () {
     return {
-      isInput:false,
+      isInput: false,
       inputText: '',
       kindToType: new Map([
-          ['全部', 0],
-          ['水果', 1],
-          ['蔬菜', 2],
-          ['肉蛋', 3],
-          ['速冻', 4],
-          ['酒饮', 5],
-          ['乳品', 6],
-          ['零食', 7]
-        ]),
-      goodsType: '全部',
+        ['全部', 0],
+        ['水果', 1],
+        ['蔬菜', 2],
+        ['肉蛋', 3],
+        ['速冻', 4],
+        ['酒饮', 5],
+        ['乳品', 6],
+        ['零食', 7]
+      ]),
+      goodsType: '全部'
     }
   },
   methods: {
     changeGoodsType () {
-      this.$store.state.GoodsCurrentSelKind = this.kindToType.get(this.goodsType);
-      this.toTop();
-    },
-    toTop () {
-
+      this.$store.state.GoodsCurrentSelKind = this.kindToType.get(this.goodsType)
     }
   }
 }
@@ -88,5 +84,4 @@ export default {
     right: 10px;
     top: 5px;
   }
-
 </style>

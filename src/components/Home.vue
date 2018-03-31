@@ -23,7 +23,7 @@
              ></one-commodity>
           </li>
         </ul>
-        <div :key="animatedCurrentKey">
+        <div :key="'0' + animatedCurrentKey">
           <p class="no-more-goods">没有更多商品啦，敬请期待!!!</p>
         </div>
       </transition-group>
@@ -40,7 +40,7 @@ export default {
   data () {
     return {
       goods:[],
-      animatedCurrentKey:0,
+      animatedCurrentKey: 0,
     }
   },
   computed: {
@@ -57,7 +57,7 @@ export default {
       } else {
         return itemKind === currentKind;
       }
-    }
+    },
   },
   components: {
     OneCommodity: OneCommodity,

@@ -8,9 +8,9 @@ import {
   Submenu,
   MenuItem,
   MenuItemGroup,
-  Carousel,//幻灯片
-  CarouselItem,//幻灯片
-  Badge,//购物车上方显示数量
+  Carousel, //幻灯片
+  CarouselItem, //幻灯片
+  Badge, //购物车上方显示数量
   Select,
   Option,
   Dialog,
@@ -34,3 +34,4 @@ Vue.use(Badge)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Dialog)
+
