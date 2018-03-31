@@ -135,33 +135,33 @@ export default {
   }
   .homeImg{
     height: 100%;
-    background-image: url('../assets/icon/home.png');
+    background-image: url('../../static/icon/home.png');
     background-repeat: no-repeat;
     background-position: center 50%;
     background-size: 45px;
   }
   .homeImgOn{
-    background-image: url('../assets/icon/home-on.png');
+    background-image: url('../../static/icon/home-on.png');
   }
   .cartImg{
     height: 100%;
-    background-image: url('../assets/icon/cart.png');
+    background-image: url('../../static/icon/cart.png');
     background-repeat: no-repeat;
     background-position: center 50%;
     background-size: 45px;
   }
   .cartImgOn{
-    background-image: url('../assets/icon/cart-on.png');
+    background-image: url('../../static/icon/cart-on.png');
   }
   .profileImg{
     height: 100%;
-    background-image: url('../assets/icon/profile.png');
+    background-image: url('../../static/icon/profile.png');
     background-repeat: no-repeat;
     background-position: center 50%;
     background-size: 45px;
   }
   .profileImgOn{
-    background-image: url('../assets/icon/profile-on.png');
+    background-image: url('../../static/icon/profile-on.png');
   }
 
   .cart-counter{
