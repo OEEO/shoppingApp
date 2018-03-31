@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import InputNumber from './public/InputNumber.vue';
+
 export default {
   name: 'one-commodity',
   props: ['itemId','imgUrl', 'title', 'content', 'price', 'count'],
@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     addGoodsToCart () {
-      this.count = 1;
       this.oneCommodity.count++;
       this.$store.state.cartGoods.push(this.oneCommodity);
       this.$store.state.cartCounter++;
@@ -84,10 +83,7 @@ export default {
         path: '/DetailsPage',
         query: this.oneCommodity
       })
-    }
-  },
-  components: {
-    MyInputNumber: InputNumber
+    },
   }
 }
 
@@ -163,7 +159,7 @@ export default {
   }
     @media screen and (min-width: 1025px) {
     .one-commodity{
-      height: 400px;
+      height: 300px;
     }
   }
 </style>

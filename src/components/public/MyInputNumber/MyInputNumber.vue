@@ -1,5 +1,5 @@
 <template>
-  <div class="input-number" @click.stop="">
+  <div class="my-input-number" @click.stop="">
     <i class="el-icon-remove-outline" @click="minus"></i>
     <span class="inputText">{{ number }}</span>
     <i class="el-icon-circle-plus" @click="plus"></i>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'InputNumber',
+  name: 'MyInputNumber',
   props: ['count'],
   data () {
     return {
@@ -37,12 +37,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .el-icon-remove-outline,
+  .el-icon-circle-plus{
+    font-size: 20px;
+  }
+  .el-icon-remove-outline{
+    color: #ff65af;
+  }
+  .el-icon-circle-plus{
+    color: #ff65af;
+  }
   .input-number{
     display: inline-block;
     user-select: none;
     .inputText{
       display: inline-block;
-      width: 20px;
+      width: 25px;
       text-align: center;
     }
   }

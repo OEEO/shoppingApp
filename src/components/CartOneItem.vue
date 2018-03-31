@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import InputNumber from './public/InputNumber.vue';
 export default {
   name: 'one-commodity',
   props: ['itemId','imgUrl', 'title', 'content', 'price', 'count'],
@@ -113,9 +112,6 @@ export default {
         query: this.oneCommodity
       })
     }
-  },
-  components: {
-    MyInputNumber: InputNumber
   }
 }
 </script>
@@ -191,7 +187,7 @@ export default {
   }
     @media screen and (min-width: 1025px) {
     .one-commodity{
-      height: 400px;
+      height: 300px;
     }
   }
 

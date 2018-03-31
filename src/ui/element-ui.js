@@ -16,12 +16,9 @@ import {
   Dialog,
 } from 'element-ui'
 
-import InputNumber from '../components/public/InputNumber'
-
 
 Vue.use(Button)
 Vue.use(Input)
-Vue.use(InputNumber)
 Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Menu)
