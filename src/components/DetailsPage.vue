@@ -1,5 +1,5 @@
 <template>
-  <div class="details-page">
+  <div class="details-page" @click="updatedNavImg">
     <header class="dp-header">
       <span class="dp-header-toRoot">
         <router-link to="/">
@@ -70,8 +70,12 @@ export default {
           }
         })
       }
+    },
+    updatedNavImg () {
+      this.$store.state.cartCounter++;
+      this.$store.state.cartCounter--;
     }
-  }
+  },
 }
 </script>
 

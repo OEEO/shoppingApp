@@ -83,6 +83,8 @@ export default {
         path: '/DetailsPage',
         query: this.oneCommodity
       })
+      this.$store.state.cartCounter++;
+      this.$store.state.cartCounter--;
     },
   }
 }

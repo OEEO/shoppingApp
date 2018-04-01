@@ -22,20 +22,13 @@ export default {
       homeImgOn: '',
       cartImgOn: '',
       profileImgOn: '',
-      allBtnImgUrl: [
-      './static/icon/home.png',
-      './static/icon/cart.png',
-      './static/icon/profile.png',
-      './static/icon/home-on.png',
-      './static/icon/cart-on.png',
-      './static/icon/profile-on.png',
-      ],
       imgLoadCount: 0
     }
   },
   methods: {
     //点击更新菜单背景
     changeNavImg (ev) {
+      console.log('click');
       let claName = ev.target.className;
       if (claName.includes('home')) {
         this.homeImgOn = 'homeImgOn';
@@ -75,17 +68,6 @@ export default {
         this.cartImgOn = '';
         this.profileImgOn = '';
       }
-    },
-    createImgPromise(url){
-      return new Promise((resolve, reject) => {
-        let img = new Image();
-        img.src = url;
-        console.log('开始请求');
-        img.onload = () => {
-          console.log('请求成功');
-          resolve(img)
-        }
-      })
     }
   },
   computed: {
@@ -97,15 +79,7 @@ export default {
     },
   },
   mounted () {
-    let arr = [];
-    let that = this;
-    this.allBtnImgUrl.forEach((url, i)=> {
-      arr[i] = this.createImgPromise(url);
-    });
-
-    Promise.all(arr).then(() =>{
-      that.autoChangeCurrentImg();
-    })
+    this.autoChangeCurrentImg();
   },
   updated () {
     this.autoChangeCurrentImg();
