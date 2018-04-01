@@ -15,6 +15,13 @@
 </template>
 
 <script>
+import '../../static/icon/home.png'
+import '../../static/icon/cart.png'
+import '../../static/icon/profile.png'
+import '../../static/icon/home-on.png'
+import '../../static/icon/cart-on.png'
+import '../../static/icon/profile-on.png'
+
 export default {
   name: 'home',
   data () {
