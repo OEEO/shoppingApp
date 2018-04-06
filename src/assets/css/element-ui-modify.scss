@@ -1,0 +1,25 @@
+//购物车中对话框
+.cart .el-dialog__header{
+  display: none;
+}
+//主页和详情页购物车图标
+.details-page .el-icon-goods::before,
+.home .el-icon-goods::before{
+  font-size: 25px;
+}
+.details-page .el-icon-goods::before{
+  line-height: 0;
+}
+
+.address .el-button{
+  text-align: left;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  padding: 10px;
+  position: relative;
+  .el-icon-arrow-right{
+    position: absolute;
+    right: 10px;
+  }
+}

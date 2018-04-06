@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import {
   Button,
+  Form,
+  FormItem,
   Input,
   Tabs,
   TabPane,
@@ -18,6 +20,8 @@ import {
 
 
 Vue.use(Button)
+Vue.use(Form)
+Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(Tabs)
 Vue.use(TabPane)

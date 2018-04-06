@@ -1,20 +1,25 @@
 <template>
   <header class="home-header">
-    <div class="search">
-      <div v-if="!isInput">
+    <h4 class="top-text"> 一小时达 </h4>
+<!--     <div class="search">
+      <div v-show="!isInput">
         <span>一小时达</span>
-        <i class="el-icon-search" @click="isInput = !isInput"></i>
+        <i class="el-icon-search" @click="isInputFun"></i>
       </div>
 
       <el-input
-        v-else
+        ref="inputSearch"
+        v-show="isInput"
         placeholder="请输入内容"
         prefix-icon="el-icon-search"
-        v-model="inputText">
+        v-model="inputText"
+        @blur="isInput = false"
+        @keyup.enter.native="search"
+        :autofocus="true">
       </el-input>
-    </div>
+    </div> -->
     <div class="tap-menu">
-      <el-tabs :tab-position="'top'" type="border-card" style="height: 39px;" v-model="goodsType" @tab-click="changeGoodsType">
+      <el-tabs :tab-position="'top'" type="border-card" style="height: 40px;" v-model="goodsType" @tab-click="changeGoodsType">
         <el-tab-pane label="全部" name="全部"></el-tab-pane>
         <el-tab-pane label="水果" name="水果"></el-tab-pane>
         <el-tab-pane label="蔬菜" name="蔬菜"></el-tab-pane>
@@ -33,8 +38,8 @@ export default {
   name: 'home-header',
   data () {
     return {
-      isInput: false,
-      inputText: '',
+      // isInput: false,
+      // inputText: '',
       kindToType: new Map([
         ['全部', 0],
         ['水果', 1],
@@ -51,37 +56,58 @@ export default {
   methods: {
     changeGoodsType () {
       this.$store.state.GoodsCurrentSelKind = this.kindToType.get(this.goodsType)
-    }
-  }
+    },
+    // isInputFun () {
+    //   this.isInput = true;
+    //   this.$nextTick(() => {
+    //     this.$refs.inputSearch.focus();
+    //   })
+    // },
+    // search(){
+
+    // }
+  },
+  // directives: {
+  //   focus: {
+  //     // 指令的定义
+  //     inserted: function (el) {
+  //       el.focus()
+  //     }
+  //   }
+  // }
 }
 </script>
 
-<style scoped>
-  .home-header{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding-top: 10px;
-    background-color: #fff;
-    z-index: 999;
-  }
-  .search .el-input{
-    width: 80%;
-  }
-  .search{
-    position: relative;
-  }
-  .search>div{
-    height: 45px;
-    line-height: 45px;
-  }
-  .tap-menu{
-    margin-top: 2px;
-  }
-  .el-icon-search{
-    position: absolute;
-    right: 10px;
-    top: 5px;
-  }
+<style lang="scss" scoped>
+@import "../assets/css/variable.scss";
+
+.home-header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 999;
+}
+// .search .el-input{
+//   width: 80%;
+// }
+// .search{
+//   position: relative;
+// }
+// .search>div{
+//   height: 45px;
+//   line-height: 45px;
+// }
+// .el-icon-search{
+//   position: absolute;
+//   right: 10px;
+//   top: 15px;
+// }
+.top-text{
+  height: $HomeHeaderHeight - 40px;
+  line-height: $HomeHeaderHeight - 40px;
+}
+.tap-menu{
+}
 </style>

@@ -15,13 +15,6 @@
 </template>
 
 <script>
-import '../../static/icon/home.png'
-import '../../static/icon/cart.png'
-import '../../static/icon/profile.png'
-import '../../static/icon/home-on.png'
-import '../../static/icon/cart-on.png'
-import '../../static/icon/profile-on.png'
-
 export default {
   name: 'home',
   data () {
@@ -35,7 +28,6 @@ export default {
   methods: {
     //点击更新菜单背景
     changeNavImg (ev) {
-      console.log('click');
       let claName = ev.target.className;
       if (claName.includes('home')) {
         this.homeImgOn = 'homeImgOn';
@@ -94,67 +86,69 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .app-nav{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-top: 1px solid #eee;
-    font-size: 0;
-    background-color: #fff;
-    height: 60px;
-    z-index: 999;
-  }
-  .nav-item{
-    display: inline-block;
-    width: 33.33%;
-    height: 60px;
-  }
-  .nav-item>div{
-    height: 100%;
-  }
-  .homeImg{
-    height: 100%;
-    background-image: url('../../static/icon/home.png');
-    background-repeat: no-repeat;
-    background-position: center 50%;
-    background-size: 45px;
-  }
-  .homeImgOn{
-    background-image: url('../../static/icon/home-on.png');
-  }
-  .cartImg{
-    height: 100%;
-    background-image: url('../../static/icon/cart.png');
-    background-repeat: no-repeat;
-    background-position: center 50%;
-    background-size: 45px;
-  }
-  .cartImgOn{
-    background-image: url('../../static/icon/cart-on.png');
-  }
-  .profileImg{
-    height: 100%;
-    background-image: url('../../static/icon/profile.png');
-    background-repeat: no-repeat;
-    background-position: center 50%;
-    background-size: 45px;
-  }
-  .profileImgOn{
-    background-image: url('../../static/icon/profile-on.png');
-  }
+<style lang="scss" scoped>
+@import "../assets/css/variable.scss";
 
-  .cart-counter{
-    position: absolute;
-    width: 25px;
-    height: 20px;
-    top: 5px;
-    line-height: 20px;
-    border-radius: 40%;
-    background-color: #ff65af;
-    color: #fff;
-    font-size: 10px;
-  }
+.app-nav{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #eee;
+  font-size: 0;
+  background-color: #fff;
+  height: $NavHeight;
+  z-index: 999;
+}
+.nav-item{
+  display: inline-block;
+  width: 33.33%;
+  height: 100%;
+}
+.nav-item>div{
+  height: 100%;
+}
+.homeImg{
+  height: 100%;
+  background-image: url('../../static/icon/home.png');
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: $NavHeight * 0.75;
+}
+.homeImgOn{
+  background-image: url('../../static/icon/home-on.png');
+}
+.cartImg{
+  height: 100%;
+  background-image: url('../../static/icon/cart.png');
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: $NavHeight * 0.75;
+}
+.cartImgOn{
+  background-image: url('../../static/icon/cart-on.png');
+}
+.profileImg{
+  height: 100%;
+  background-image: url('../../static/icon/profile.png');
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: $NavHeight * 0.75;
+}
+.profileImgOn{
+  background-image: url('../../static/icon/profile-on.png');
+}
+
+.cart-counter{
+  position: absolute;
+  width: 25px;
+  height: 20px;
+  top: 5px;
+  line-height: 20px;
+  border-radius: 40%;
+  background-color: #ff65af;
+  color: #fff;
+  font-size: 10px;
+}
 
 </style>

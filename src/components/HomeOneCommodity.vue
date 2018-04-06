@@ -35,6 +35,7 @@ export default {
         content: this.content,
         price: this.price,
         count: this.count,
+        isInCart: false,
       }
     }
   },
@@ -53,28 +54,17 @@ export default {
   },
   methods: {
     addGoodsToCart () {
-      this.oneCommodity.count++;
-      this.$store.state.cartGoods.push(this.oneCommodity);
-      this.$store.state.cartCounter++;
+      this.$store.commit('addGoodsToCart', this.oneCommodity);
     },
     getOperator (op) {
-      let good = null;
-      this.$store.state.cartGoods.some(obj => {
-        if (obj.id === this.itemId) {
-          good = obj;
-        }
-      })
-      let cartGoods = this.$store.state.cartGoods;
+      let id = this.oneCommodity.id;
       if (op === 'plus') {
-        this.$store.state.cartCounter++;
-        good.count++;
+        this.$store.commit('addGoods', id);
       } else {
-        this.$store.state.cartCounter--;
-        good.count--;
-        if (good.count === 0) {
-          this.$store.state.cartGoods = cartGoods.filter(obj => {
-            return obj.id !== good.id;
-          })
+        if (this.oneCommodity.count === 1) {
+          this.$store.commit('deleteGoodsFromCart', id);
+        } else {
+          this.$store.commit('reduceGoods', id);
         }
       }
     },
@@ -82,7 +72,8 @@ export default {
       this.$router.push({
         path: '/DetailsPage',
         query: this.oneCommodity
-      })
+      });
+      //解决主页与详情页切换时，菜单栏无法更新获取当前路由的问题
       this.$store.state.cartCounter++;
       this.$store.state.cartCounter--;
     },
@@ -92,76 +83,77 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/css/variable.scss";
+@import "../assets/css/variable.scss";
+
+.one-commodity{
+  height: $OneCommodityWrapHeight;
+  width: 100%;
+  font-size: 0;
+  border-bottom: 1px solid #e4e7ed;
+  background-color: #fff;
+}
+.one-commodity>div{
+  font-size: $GobalFontSize;
+  display: inline-block;
+  vertical-align: middle;
+}
+.left{
+  width: 40%;
+  height: 100%;
+}
+.left>img{
+  height: 80%;
+  transform: translateY(10%);
+}
+.right{
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  width: 60%;
+  text-align: left;
+  padding-left: 10px;
+  .text{
+    position: absolute;
+    line-height: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .title{
+
+  }
+  .price {
+
+    .price-number{
+      color: #ff65af;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+  .cart-btn{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    .el-button--danger{
+      background-color: #ff65af;
+      border-color: #ff65af;
+    }
+  }
+
+}
+
+@media screen and (min-width: 600px) {
   .one-commodity{
-    height: 130px;
-    width: 100%;
-    font-size: 0;
-    border-bottom: 1px solid #e4e7ed;
-    background-color: #fff;
+    height: $OneCommodityWrapHeight600;
   }
-  .one-commodity>div{
-    font-size: $GobalFontSize;
-    display: inline-block;
-    vertical-align: middle;
+}
+@media screen and (min-width: 800px) {
+  .one-commodity{
+    height: $OneCommodityWrapHeight800;
   }
-  .left{
-    width: 40%;
-    height: 100%;
+}
+  @media screen and (min-width: 1025px) {
+  .one-commodity{
+    height: $OneCommodityWrapHeight1025;
   }
-  .left>img{
-    height: 80%;
-    transform: translateY(10%);
-  }
-  .right{
-    box-sizing: border-box;
-    position: relative;
-    height: 100%;
-    width: 60%;
-    text-align: left;
-    padding-left: 10px;
-    .text{
-      position: absolute;
-      line-height: 30px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .title{
-
-    }
-    .price {
-
-      .price-number{
-        color: #ff65af;
-        font-size: 18px;
-        font-weight: 600;
-      }
-    }
-    .cart-btn{
-      position: absolute;
-      bottom: 5px;
-      right: 10px;
-      .el-button--danger{
-        background-color: #ff65af;
-        border-color: #ff65af;
-      }
-    }
-
-  }
-
-  @media screen and (min-width: 600px) {
-    .one-commodity{
-      height: 200px;
-    }
-  }
-  @media screen and (min-width: 800px) {
-    .one-commodity{
-      height: 250px;
-    }
-  }
-    @media screen and (min-width: 1025px) {
-    .one-commodity{
-      height: 300px;
-    }
-  }
+}
 </style>

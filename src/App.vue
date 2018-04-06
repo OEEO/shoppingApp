@@ -19,13 +19,16 @@ export default {
 </script>
 
 <style lang="scss">
-// 修改对话框样式
-@import "./assets/css/element-ui-modify/dialog-cart.scss";
+// el-ui 的默认样式
+@import "./assets/css/element-ui-modify.scss";
+// 变量
+@import "./assets/css/variable.scss";
 
 #app {
   font-family: "Microsoft YaHei","微软雅黑",'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: $GobalFontSize;
   text-align: center;
   color: #2c3e50;
   width: 100%;

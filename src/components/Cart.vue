@@ -57,7 +57,7 @@
       </main>
       <footer class="cart-footer" v-show="cartGoods.length > 0">
         <div class="toPay">
-            <el-button type="danger" class="text-right">去结算<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+            <el-button type="danger" class="text-right" @click="toOrderForm">去结算<i class="el-icon-arrow-right el-icon--right"></i></el-button>
         </div>
       </footer>
       <div v-if="cartGoods.length === 0" class="empty-wrap">
@@ -121,13 +121,39 @@ export default {
         this.redPacket = '';
         this.redPacketPlaceholder = '无可用红包';
         return true;
+      } else {
+        //有红包可用时，默认选择最大优惠
+        this.redPackets.concat().reverse().some(val => {
+          if (val.limit <= this.amount) {
+             this.redPacket = val.money;
+             return true;
+           }
+        })
       }
-      //红包是否可选择
+      //红包是否不可选择
       if (this.amount < limit) {
         return true;
       } else {
         this.redPacketPlaceholder = '请选择红包';
         return false;
+      }
+    },
+    toOrderForm () {
+      let isLogin = this.$store.state.isLogin;
+      if (!isLogin) {
+        this.$router.push({
+          path: '/Login'
+        })
+        return;
+      }
+      if (this.cartGoods.length > 0) {
+        this.$router.push({
+          path: '/OrderForm',
+          query: {
+            cartGoods: this.cartGoods,
+            pay: this.pay
+          }
+        })
       }
     }
   },
@@ -135,77 +161,75 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $cartHeaderHeight: 40px;
-  $NavHeight: 60px;
-  $cartFooterHeight: 40px;
-  $mainRed: #ff65af;
-  .float-right{
-    float: right;
-  }
-  .cart{
-    background-color: #fff;
-    height: 100%;
-  }
-  .cart-header,
-  .cart-footer{
-    background-color: #fff;
-  }
-  .cart-header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    text-align: center;
-    width: 100%;
-    height: $cartHeaderHeight;
-    line-height: $cartHeaderHeight;
-    border-bottom: 1px solid #eee;
-    background-color: #fff;
-    z-index: 999;
-  }
-  .cart-body{
-    padding-top: $cartHeaderHeight;
-    padding-bottom: $NavHeight + $cartFooterHeight;
-    background-color: #eee;
-    .wrap{
-      padding-top: 10px;
-      .price-wrap{
-        margin-top: 10px;
-        background-color: #fff;
-        padding: 15px 10px;
-        text-align: left;
-        line-height: 40px;
-        >div{
-          border-bottom: 1px solid #eee;
-        }
-        .red-packet .float-right{
-          color: $mainRed;
-        }
+@import "../assets/css/variable.scss";
+
+.float-right{
+  float: right;
+}
+.cart{
+  background-color: #fff;
+  height: 100%;
+}
+.cart-header,
+.cart-footer{
+  background-color: #fff;
+}
+.cart-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  height: $cartHeaderHeight;
+  line-height: $cartHeaderHeight;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  z-index: 999;
+}
+.cart-body{
+  padding-top: $cartHeaderHeight;
+  padding-bottom: $NavHeight + $cartFooterHeight;
+  background-color: #f5f5f5;
+  .wrap{
+    padding-top: 10px;
+    .price-wrap{
+      margin-top: 10px;
+      background-color: #fff;
+      padding: 15px 10px;
+      text-align: left;
+      line-height: 40px;
+      >div{
+        border-bottom: 1px solid #eee;
+      }
+      .red-packet .float-right{
+        color: $mainRed;
       }
     }
   }
-  .cart-footer{
-    position: fixed;
-    width: 100%;
-    height: $cartFooterHeight;
-    line-height: $cartFooterHeight;
-    bottom: $NavHeight;
-    border-top: 1px solid #eee;
-    left: 0;
-    text-align: right;
-  }
-  .empty-wrap{
-    position: absolute;
-    height: 50px;
-    width: 100%;
-    top: 50%;
-    margin-top: -25px;
-  }
-  ul{
-    list-style: none;
-  }
-  .el-button--danger{
-    background-color: #ff65af;
-    border: none;
-    border-radius: 0;
-  }
+}
+.cart-footer{
+  position: fixed;
+  width: 100%;
+  height: $cartFooterHeight;
+  line-height: $cartFooterHeight;
+  bottom: $NavHeight;
+  border-top: 1px solid #eee;
+  left: 0;
+  text-align: right;
+}
+.empty-wrap{
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  top: 50%;
+  margin-top: -25px;
+}
+ul{
+  list-style: none;
+}
+.el-button--danger{
+  background-color: $mainRed;
+  border: none;
+  border-radius: 0;
+}
 </style>

@@ -1,19 +1,26 @@
 <template>
   <div class="profile">
-    <div class="login" v-if="!isLogin">
-      <el-input v-model="username" placeholder="请输入帐号"></el-input>
-      <el-input v-model="password" placeholder="请输入密码" type="password"></el-input>
-      <br>
-      <el-button type="success" @click="isLogin = true">登录</el-button>
-      <el-button>注册</el-button>
-    </div>
-    <div class="main" v-else>
-      <header class="profile-header">
-        <h3>当前用户：{{ username }}</h3>
-      </header>
-      <main class="profile-body"></main>
-      <footer class="profile-footer"></footer>
-    </div>
+      <div class="login" v-if="!isLogin">
+          <el-button type="success" @click="toLogin">登录</el-button>
+      </div>
+      <div class="user" v-else>
+          <header class="profile-header">
+            <h3>当前用户：{{ username }}</h3>
+          </header>
+          <main class="profile-body">
+            <div class="address">
+              <el-button @click.stop="toEditAddressPage">我的地址<i class="el-icon-arrow-right"></i></el-button>
+            </div>
+          </main>
+          <footer class="profile-footer">
+            <div>
+              <el-button type="danger" @click="logout">退出登录</el-button>
+            </div>
+          </footer>
+      </div>
+      <transition enter-active-class="slideInRight">
+        <router-view></router-view>
+      </transition>
   </div>
 </template>
 
@@ -22,35 +29,85 @@ export default {
   name: 'profile',
   data () {
     return {
-      isLogin: false,
-      username: 'abcde',
-      password: '123456'
+    }
+  },
+  computed: {
+    username () {
+      return this.$store.state.username;
+    },
+    isLogin () {
+      return this.$store.state.isLogin;
+    }
+  },
+  methods: {
+    toLogin () {
+      this.$router.push({
+        path: '/Login',
+      })
+    },
+    toEditAddressPage () {
+      this.$router.push({
+        path: '/Profile/EditAddressPage'
+      })
+    },
+    logout () {
+      this.$store.commit('logout');
+      this.$router.push({
+        path: '/Profile'
+      })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .profile{
-    height: 100%;
-    position: relative;
+@import "../assets/css/variable.scss";
+
+.profile{
+  height: 100%;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.login{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  .el-input{
+    width: 80%;
+    margin-bottom: 10px;
   }
-  .login{
+}
+.wrap{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  .profile-header{
+    height: 50px;
+    line-height: 50px;
+  }
+  .el-button{
     width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    .el-input{
-      width: 80%;
-      margin-bottom: 10px;
-    }
+    margin-top: 10px;
   }
-  .main{
+}
+.slideInRight{
+  animation-duration: 0.25s;
+}
+.user{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  .profile-header{
+    height: 50px;
+    line-height: 50px;
+  }
+  .el-button{
     width: 100%;
-    height: 100%;
-    .profile-header{
-      height: 50px;
-      line-height: 50px;
-    }
+    margin-top: 10px;
   }
+}
 </style>

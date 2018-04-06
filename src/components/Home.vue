@@ -73,11 +73,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/css/variable.scss";
+
 .home{
   width: 100%;
-  padding-bottom: 70px;
-  padding-top: 110px;
+  padding-bottom: $NavHeight + 5px;
+  padding-top: $HomeHeaderHeight;
 }
 .home-main{
   width: 100%;
@@ -94,5 +96,8 @@ export default {
 .no-more-goods{
   height: 40px;
   line-height: 40px;
+}
+.slideInRight{
+  animation-duration: 0.25s;
 }
 </style>
