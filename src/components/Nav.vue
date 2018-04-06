@@ -101,42 +101,43 @@ export default {
   z-index: 999;
 }
 .nav-item{
+  height: 100%;
   display: inline-block;
   width: 33.33%;
-  height: 100%;
+  text-align: center;
 }
 .nav-item>div{
-  height: 100%;
+  display: inline-block;
+  width: $NavHeight * 0.75;
+  height: $NavHeight * 0.75;
+  margin-top: $NavHeight * 0.125;
 }
 .homeImg{
-  height: 100%;
   background-image: url('../../static/icon/home.png');
   background-repeat: no-repeat;
-  background-position: center 50%;
-  background-size: $NavHeight * 0.75;
+  background-position: 0 0;
+  background-size: $NavHeight * 0.75 * 3  $NavHeight * 0.75;
 }
 .homeImgOn{
-  background-image: url('../../static/icon/home-on.png');
+  background-position: 100% 100%;
 }
 .cartImg{
-  height: 100%;
   background-image: url('../../static/icon/cart.png');
   background-repeat: no-repeat;
-  background-position: center 50%;
-  background-size: $NavHeight * 0.75;
+  background-position: 0 0;
+  background-size: $NavHeight * 0.75 * 3  $NavHeight * 0.75;
 }
 .cartImgOn{
-  background-image: url('../../static/icon/cart-on.png');
+  background-position: 100% 100%;
 }
 .profileImg{
-  height: 100%;
   background-image: url('../../static/icon/profile.png');
   background-repeat: no-repeat;
-  background-position: center 50%;
-  background-size: $NavHeight * 0.75;
+  background-position: 0 0;
+  background-size: $NavHeight * 0.75 * 3  $NavHeight * 0.75;
 }
 .profileImgOn{
-  background-image: url('../../static/icon/profile-on.png');
+  background-position: 100% 100%;
 }
 
 .cart-counter{
