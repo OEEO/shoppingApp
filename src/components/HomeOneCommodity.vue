@@ -61,7 +61,10 @@ export default {
       if (op === 'plus') {
         this.$store.commit('addGoods', id);
       } else {
-        if (this.oneCommodity.count === 1) {
+        let count = this.$store.state.cartGoods.filter(val => {
+          return val.id === id;
+        })[0].count;
+        if (count === 1) {
           this.$store.commit('deleteGoodsFromCart', id);
         } else {
           this.$store.commit('reduceGoods', id);

@@ -32,17 +32,17 @@ export default {
   data () {
     return {
       goods:[],
-      animatedCurrentKey: 0,
     }
   },
   computed: {
-
+    animatedCurrentKey () {
+      return this.$store.state.GoodsCurrentSelKind;
+    }
   },
   methods: {
     //分类按钮点击时
     isCurrent (itemKind) {
       let currentKind = this.$store.state.GoodsCurrentSelKind;
-      this.animatedCurrentKey = currentKind;
       if (currentKind === 0) {
         //0表示全部商品
         return true;
