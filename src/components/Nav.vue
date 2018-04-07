@@ -1,15 +1,21 @@
 <template>
   <nav class="app-nav">
-    <router-link to="/Home" class="nav-item">
-      <div class="homeImg" :class="homeImgOn" @click="changeNavImg"></div>
-    </router-link>
-    <router-link to="/Cart" class="nav-item">
-      <div class="cartImg" :class="cartImgOn" @click="changeNavImg">
-        <span class="cart-counter" v-show="cartCounter > 0">{{ cartCounter }}</span>
+    <router-link to="/Home" >
+      <div class="nav-item" @click="changeNavImg">
+        <div class="homeImg" :class="homeImgOn"></div>
       </div>
     </router-link>
-    <router-link to="/Profile" class="nav-item">
-      <div class="profileImg" :class="profileImgOn" @click="changeNavImg"></div>
+    <router-link to="/Cart">
+      <div class="nav-item" @click="changeNavImg">
+        <div class="cartImg" :class="cartImgOn">
+          <span class="cart-counter" v-show="cartCounter > 0">{{ cartCounter }}</span>
+        </div>
+      </div>
+    </router-link>
+    <router-link to="/Profile">
+      <div class="nav-item" @click="changeNavImg">
+        <div class="profileImg" :class="profileImgOn" ></div>
+      </div>
     </router-link>
   </nav>
 </template>
@@ -26,28 +32,13 @@ export default {
     }
   },
   methods: {
-    //点击更新菜单背景
-    changeNavImg (ev) {
-      let claName = ev.target.className;
-      if (claName.includes('home')) {
-        this.homeImgOn = 'homeImgOn';
-        this.cartImgOn = '';
-        this.profileImgOn = '';
-      } else if(claName.includes('cart')){
-        this.homeImgOn = '';
-        this.cartImgOn = 'cartImgOn';
-        this.profileImgOn = '';
-      } else if(claName.includes('profile')) {
-        this.homeImgOn = '';
-        this.cartImgOn = '';
-        this.profileImgOn = 'profileImgOn';
-      } else {
+    //点击导航菜单时，更新数据，触发 updated
+    changeNavImg () {
         this.homeImgOn = '';
         this.cartImgOn = '';
         this.profileImgOn = '';
-      }
     },
-    //直接跳转时，更新背景
+    // 更新导航图标
     autoChangeCurrentImg() {
       let currentPath = this.currentPath;
       if (currentPath.includes('Home')) {
