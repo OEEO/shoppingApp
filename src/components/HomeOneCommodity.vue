@@ -1,8 +1,6 @@
 <template>
   <div class="one-commodity" @click="goToDetailsPage">
-    <div class="left"
-    v-loading="loadingImg"
->
+    <div class="left" v-loading="loadingImg">
       <img :src="imgUrl">
     </div>
     <div class="right">
