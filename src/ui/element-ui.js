@@ -16,8 +16,8 @@ import {
   Select,
   Option,
   Dialog,
+  Loading,
 } from 'element-ui'
-
 
 Vue.use(Button)
 Vue.use(Form)
@@ -35,4 +35,7 @@ Vue.use(Badge)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Dialog)
+Vue.use(Loading.directive)
+
+Vue.prototype.$loading = Loading.service
 

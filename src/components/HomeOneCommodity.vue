@@ -1,6 +1,8 @@
 <template>
   <div class="one-commodity" @click="goToDetailsPage">
-    <div class="left">
+    <div class="left"
+    v-loading="loadingImg"
+>
       <img :src="imgUrl">
     </div>
     <div class="right">
@@ -28,6 +30,7 @@ export default {
   props: ['itemId','imgUrl', 'title', 'content', 'price', 'count'],
   data () {
     return {
+      loadingImg: true,
       oneCommodity: {
         id: this.itemId,
         img: this.imgUrl,
@@ -80,6 +83,13 @@ export default {
       this.$store.state.cartCounter++;
       this.$store.state.cartCounter--;
     },
+  },
+  created () {
+    let img = new Image();
+    img.src = this.imgUrl;
+    img.onload = () => {
+      this.loadingImg = false;
+    }
   }
 }
 
