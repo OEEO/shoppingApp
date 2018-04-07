@@ -20,6 +20,18 @@
         </div>
       </transition-group>
     </div>
+
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%">
+      <p>这是手机端应用，用手机微信，或浏览器扫码打开，或chrome浏览器手机调试模式下打开效果更佳哦。</p>
+      <img src="../../static/url.png" height="280" width="280">
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -30,8 +42,14 @@ import HomeHeader from './HomeHeader.vue'
 export default {
   name: 'home',
   data () {
+    var UA = navigator.userAgent;
+    var ipad = !!(UA.match(/(iPad).*OS\s([\d_]+)/)),
+        isIphone = !!(!ipad && UA.match(/(iPhone\sOS)\s([\d_]+)/)),
+        isAndroid = !!(UA.match(/(Android)\s+([\d.]+)/)),
+        isPC = !(isIphone || isAndroid || ipad);
     return {
       goods:[],
+      dialogVisible: isPC
     }
   },
   computed: {

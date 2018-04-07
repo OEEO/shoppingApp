@@ -1,23 +1,6 @@
 <template>
   <header class="home-header">
     <h4 class="top-text"> 一小时达 </h4>
-<!--     <div class="search">
-      <div v-show="!isInput">
-        <span>一小时达</span>
-        <i class="el-icon-search" @click="isInputFun"></i>
-      </div>
-
-      <el-input
-        ref="inputSearch"
-        v-show="isInput"
-        placeholder="请输入内容"
-        prefix-icon="el-icon-search"
-        v-model="inputText"
-        @blur="isInput = false"
-        @keyup.enter.native="search"
-        :autofocus="true">
-      </el-input>
-    </div> -->
     <div class="tap-menu">
       <el-tabs :tab-position="'top'" type="border-card" style="height: 40px;" v-model="goodsType" @tab-click="changeGoodsType">
         <el-tab-pane label="全部" name="全部"></el-tab-pane>
@@ -38,8 +21,6 @@ export default {
   name: 'home-header',
   data () {
     return {
-      // isInput: false,
-      // inputText: '',
       kindToType: new Map([
         ['全部', 0],
         ['水果', 1],
@@ -57,24 +38,7 @@ export default {
     changeGoodsType () {
       this.$store.state.GoodsCurrentSelKind = this.kindToType.get(this.goodsType)
     },
-    // isInputFun () {
-    //   this.isInput = true;
-    //   this.$nextTick(() => {
-    //     this.$refs.inputSearch.focus();
-    //   })
-    // },
-    // search(){
-
-    // }
   },
-  // directives: {
-  //   focus: {
-  //     // 指令的定义
-  //     inserted: function (el) {
-  //       el.focus()
-  //     }
-  //   }
-  // }
 }
 </script>
 
@@ -88,26 +52,11 @@ export default {
   width: 100%;
   background-color: #fff;
   z-index: 999;
-}
-// .search .el-input{
-//   width: 80%;
-// }
-// .search{
-//   position: relative;
-// }
-// .search>div{
-//   height: 45px;
-//   line-height: 45px;
-// }
-// .el-icon-search{
-//   position: absolute;
-//   right: 10px;
-//   top: 15px;
-// }
-.top-text{
-  height: $HomeHeaderHeight - 40px;
-  line-height: $HomeHeaderHeight - 40px;
-}
-.tap-menu{
+  .top-text{
+    height: $HomeHeaderHeight - 40px;
+    line-height: $HomeHeaderHeight - 40px;
+  }
+  .tap-menu{
+  }
 }
 </style>

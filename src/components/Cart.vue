@@ -116,10 +116,13 @@ export default {
   },
   methods: {
     isRedPacketDisabled (limit) {
-      //没有可用红包时
-      if (this.amount < this.redPackets[0].limit) {
-        this.redPacket = '';
-        this.redPacketPlaceholder = '无可用红包';
+      //某个红包是否可选
+      if (this.amount < limit) {
+        //没有可用红包时
+        if (this.amount < this.redPackets[0].limit) {
+          this.redPacket = '';
+          this.redPacketPlaceholder = '无可用红包';
+        }
         return true;
       } else {
         //有红包可用时，默认选择最大优惠
@@ -129,12 +132,6 @@ export default {
              return true;
            }
         })
-      }
-      //红包是否不可选择
-      if (this.amount < limit) {
-        return true;
-      } else {
-        this.redPacketPlaceholder = '请选择红包';
         return false;
       }
     },

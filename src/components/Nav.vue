@@ -138,7 +138,7 @@ export default {
   top: 5px;
   line-height: 20px;
   border-radius: 40%;
-  background-color: #ff65af;
+  background-color: $mainRed;
   color: #fff;
   font-size: 10px;
 }
