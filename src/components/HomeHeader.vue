@@ -2,7 +2,7 @@
   <header class="home-header">
     <h4 class="top-text"> 一小时达 </h4>
     <div class="tap-menu">
-      <el-tabs :tab-position="'top'" type="border-card" style="height: 40px;" v-model="goodsType" @tab-click="changeGoodsType">
+      <el-tabs :tab-position="'top'" type="border-card" style="height: 39px;" v-model="goodsType" @tab-click="changeGoodsType">
         <el-tab-pane label="全部" name="全部"></el-tab-pane>
         <el-tab-pane label="水果" name="水果"></el-tab-pane>
         <el-tab-pane label="蔬菜" name="蔬菜"></el-tab-pane>
