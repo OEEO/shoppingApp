@@ -82,7 +82,7 @@ export default {
       this.goods = [...res.data];
     })
     .catch(() =>{
-      this.axios.get('http://localhost:8080/static/data/goods.json')
+      this.axios.get('http://127.0.0.1:7777/static/data/goods.json')
       .then(res => {
         this.goods = [...res.data];
       })
